@@ -8,7 +8,7 @@ export default function Home() {
      <div className="text-center font-extrabold text-blue-500 ">
 
 
-        Happy Birthday Jack Jay 
+        Happy Birthday Jack Jay Gandu Bhenchodh
 
      </div>
     </div>
