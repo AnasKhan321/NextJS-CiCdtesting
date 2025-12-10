@@ -1,32 +1,30 @@
-name : Test Eslint thing 
+name: Test Eslint thing
 
-on : 
-  pull : 
-    branches : 
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
       - main
 
-  push : 
-    branches : 
-      - main
-      - Main 
-    
+jobs:
+  deploy:
+    name: Deploy the app on EC2
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
 
-jobs : 
-  deploy : 
-    name : Deploy the app on EC2
-    runs-on : ubuntu-latest 
-    steps : 
-        - name : Checkout out the repository 
-          uses : actions/checkout@v2
-
-        - name: Execute remote SSH commands using SSH key
-          uses: appleboy/ssh-action@v1
-          with:
-            host: 50.17.89.19
-            username: ubuntu
-            key: ${{ secrets.AWS_SSH_KEY }}
-            port: 22
-            script : |
-
-              
+      - name: Execute remote SSH commands using SSH key
+        uses: appleboy/ssh-action@v1
+        with:
+          host: 50.17.89.19
+          username: ubuntu
+          key: ${{ secrets.AWS_SSH_KEY }}
+          port: 22
+          script: |
+            echo "Connected to EC2 ✅"
+            whoami
+            pwd
