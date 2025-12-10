@@ -27,9 +27,8 @@ jobs:
           script: |
             echo "✅ SSH connected"
             whoami
-            cd ./apps
+            cd ./apps/NextJS-CiCdtesting
             git pull origin HEAD  
-            sudo npm install -g pnpm 
             pnpm install 
             pnpm run build 
             pnpm run start
