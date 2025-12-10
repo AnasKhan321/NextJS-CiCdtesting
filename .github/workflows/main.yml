@@ -1,0 +1,30 @@
+name : Test Eslint thing 
+
+on : 
+  pull : 
+    branches : 
+      - main
+
+  push : 
+    branches : 
+      -main 
+    
+
+
+jobs : 
+  deploy : 
+    name : Deploy the app on EC2
+    runs-on : ubuntu-latest 
+    steps : 
+        - name : Checkout out the repository 
+          uses : actions/checkout@v2
+
+        - name: Execute remote SSH commands using SSH key
+          uses: appleboy/ssh-action@v1
+          with:
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            key: ${{ secrets.KEY }}
+            port: ${{ secrets.PORT }}
+            script : |
+              
